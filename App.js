@@ -3,10 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MaterialIcons } from "@expo/vector-icons";
+
 import HomeScreen from './pages/HomeScreen';
 import HistoryScreen from './pages/HistoryScreen';
 import DetailScreen from './pages/DetailScreen';
 import LoginScreen from './pages/LoginScreen';
+import AboutScreen from './pages/AboutScreen';
+
 import { AuthProvider, AuthContext } from './context/AuthContext';
 
 const Tab = createBottomTabNavigator();
@@ -35,9 +38,22 @@ function MainTabs() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           let iconName;
-          if (route.name === 'HomeTab') iconName = 'home';
-          else if (route.name === 'HistoryTab') iconName = 'history';
-          return <MaterialIcons name={iconName} size={size} color={color} />;
+
+          if (route.name === 'HomeTab') {
+            iconName = 'home';
+          } else if (route.name === 'HistoryTab') {
+            iconName = 'history';
+          } else if (route.name === 'AboutTab') {
+            iconName = 'info';
+          }
+
+          return (
+            <MaterialIcons
+              name={iconName}
+              size={size}
+              color={color}
+            />
+          );
         },
         tabBarActiveTintColor: '#4A90E2',
         tabBarInactiveTintColor: 'gray',
@@ -46,12 +62,28 @@ function MainTabs() {
       <Tab.Screen
         name="HomeTab"
         component={HomeScreen}
-        options={{ headerShown: false, tabBarLabel: 'Home' }}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Home'
+        }}
       />
+
       <Tab.Screen
         name="HistoryTab"
         component={HistoryStack}
-        options={{ headerShown: false, tabBarLabel: 'History' }}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'History'
+        }}
+      />
+
+      <Tab.Screen
+        name="AboutTab"
+        component={AboutScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'About'
+        }}
       />
     </Tab.Navigator>
   );
@@ -63,9 +95,15 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {isLoggedIn ? (
-        <Stack.Screen name="Main" component={MainTabs} />
+        <Stack.Screen
+          name="Main"
+          component={MainTabs}
+        />
       ) : (
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+        />
       )}
     </Stack.Navigator>
   );

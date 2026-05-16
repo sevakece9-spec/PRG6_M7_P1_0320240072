@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
-const BASE_URL = "http://10.1.12.186:8080/api/user";
+const BASE_URL = "http://192.168.110.19:8080/api/user";
 
 export default function LoginScreen() {
   const { login } = useContext(AuthContext);

@@ -1,14 +1,36 @@
 {
+  "expo": {
+    "name": "w3practice1072",
+    "slug": "w3practice1072",
+    "version": "1.0.0",
+    "orientation": "portrait",
+
+    "ios": {
+      "infoPlist": {
+        "NSCameraUsageDescription": "Aplikasi membutuhkan akses kamera untuk mengambil foto profil."
+      }
+    },
+
+    "android": {
+      "permissions": [
+        "CAMERA"
+      ]
+    }
+  },
+
   "name": "w3practice1072",
   "version": "1.0.0",
   "main": "index.js",
+
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+
   "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
     "@react-navigation/bottom-tabs": "^7.15.9",
     "@react-navigation/native": "^7.2.2",
     "@react-navigation/native-stack": "^7.14.11",
@@ -26,5 +48,6 @@
     "react-native-vector-icons": "^10.3.0",
     "react-native-web": "^0.21.0"
   },
+
   "private": true
 }
